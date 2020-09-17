@@ -1,0 +1,27 @@
+{
+  "name": "chuck-norris-jokes-clt",
+  "bin": {
+    "joke": "./index.js"
+  },
+  "version": "1.0.0",
+  "description": "A command line tool that renders a random Chuck Norris joke",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/partynuts/chuck-norris-jokes-clt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/partynuts/chuck-norris-jokes-clt/issues"
+  },
+  "homepage": "https://github.com/partynuts/chuck-norris-jokes-clt#readme",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "yargs": "^16.0.3"
+  }
+}
