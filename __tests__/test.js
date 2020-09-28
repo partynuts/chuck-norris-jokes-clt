@@ -20,31 +20,34 @@ describe('api', function () {
     chalk.red = jest.fn();
   });
 
+  const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {});
+
+
   describe('spitJokes', () => {
 
     it('should return one joke if answer is yes', async () => {
       askQuestion.mockResolvedValue('yes');
 
       await spitJokes();
-      console.log("Hier simma richtig", chalk.yellow.mock.calls)
 
       expect(chalk.yellow).toHaveBeenCalledWith(expect.stringContaining('Chuck Norris'))
     });
 
-    it('should return one joke if answer is yes', async () => {
-      askQuestion.mockResolvedValue('yes');
+    it('should end if answer is no', async () => {
+      askQuestion.mockResolvedValue('no');
 
       await spitJokes();
-      console.log("Hier simma richtig", chalk.yellow.mock.calls)
+      console.log("No no no no nooo", chalk.magenta.mock.calls);
 
-      expect(chalk.yellow).toHaveBeenCalledWith(expect.stringContaining('Chuck Norris'))
+      expect(mockExit).toHaveBeenCalledWith(0);
+      expect(chalk.yellow).toHaveBeenCalledTimes(0);
+      expect(chalk.magenta).toHaveBeenCalledWith(expect.stringContaining("Ok, as you wish! Maybe another time, then. Sayonara-Cabonara"))
     });
 
     it('should return multiple joke if answer is a number', async () => {
       askQuestion.mockResolvedValue('3')
 
       await spitJokes();
-      console.log("HIER SIND WIR WIEDER RICHTIG", chalk.yellow.mock.calls);
       expect(chalk.yellow).toHaveBeenCalledTimes(3);
     });
 

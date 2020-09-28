@@ -22,7 +22,7 @@ async function spitJokes(question = DEFAULT_QUESTION) {
     await askForFurtherJokes();
   } else {
     console.log(typeof answer)
-    console.log(chalk.magenta("You don't know what you are missing out on! Maybe another time, then. Bundesgarte-Ciao"));
+    console.log(chalk.magenta("Ok, as you wish! Maybe another time, then. Sayonara-Cabonara"));
     process.exit(0);
   }
 }
