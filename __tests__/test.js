@@ -31,6 +31,15 @@ describe('api', function () {
       expect(chalk.yellow).toHaveBeenCalledWith(expect.stringContaining('Chuck Norris'))
     });
 
+    it('should return one joke if answer is yes', async () => {
+      askQuestion.mockResolvedValue('yes');
+
+      await spitJokes();
+      console.log("Hier simma richtig", chalk.yellow.mock.calls)
+
+      expect(chalk.yellow).toHaveBeenCalledWith(expect.stringContaining('Chuck Norris'))
+    });
+
     it('should return multiple joke if answer is a number', async () => {
       askQuestion.mockResolvedValue('3')
 

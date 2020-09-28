@@ -2,8 +2,11 @@ const askQuestion = require('./helper');
 const http = require('http');
 const chalk = require("chalk");
 
-async function spitJokes() {
-  const answer = await askQuestion(`Would you like to read a joke? (Type yes or the amount of jokes you would like to receive.)   `);
+const DEFAULT_QUESTION = `Would you like to read a joke? (Type yes or the amount of jokes you would like to receive.)   `
+const MORE_QUESTION = `Would you like more? (Type yes or the amount of jokes you would like to receive.)   `
+
+async function spitJokes(question = DEFAULT_QUESTION) {
+  const answer = await askQuestion(question);
 
   if (answer === "yes") {
     console.log("");
@@ -26,28 +29,9 @@ async function spitJokes() {
 
 function askForFurtherJokes() {
   setTimeout(async () => {
-    const answer = await askQuestion(`Would you like more? (Type yes or the amount of jokes you would like to receive.)   `)
-
-
-    if (answer === "yes") {
-      console.log(chalk.magenta("BAM! "));
-      await getJoke(1);
-      askForFurtherJokes();
-    } else if (answer > 1 && answer <= 100) {
-      await getJoke(answer);
-      askForFurtherJokes();
-    } else if (answer < 1 || answer > 100) {
-      console.log(typeof answer)
-      console.log(chalk.red("Your input is wrong."));
-      await askForFurtherJokes();
-    } else {
-      console.log(chalk.magenta("OK, Sayonara Cabonara!"));
-      process.exit(0);
-    }
-
+    spitJokes(MORE_QUESTION);
   }, 1000)
 }
-
 
 function getJoke(_numberOfJokes) {
   const numberOfJokes = Number(_numberOfJokes);
