@@ -51,7 +51,7 @@ describe('api', function () {
       expect(chalk.yellow).toHaveBeenCalledTimes(3);
     });
 
-    it('should end the program if number inserted is bigger than 100 or smaller than 1', async () => {
+    it('should end the program if number inserted is bigger than 100', async () => {
       askQuestion.mockResolvedValue('101')
 
       await spitJokes();
@@ -60,8 +60,13 @@ describe('api', function () {
       expect(chalk.red).toHaveBeenCalledWith(expect.stringContaining('Your input is wrong.'))
     });
 
+    it('should end the program if number inserted is smaller than 1', async () => {
+      askQuestion.mockResolvedValue('0')
 
+      await spitJokes();
+      console.log("UI ui ui", chalk.red.mock.calls);
+      expect(chalk.yellow).toHaveBeenCalledTimes(0);
+      expect(chalk.red).toHaveBeenCalledWith(expect.stringContaining('Your input is wrong.'))
+    });
   })
-
-
 });
