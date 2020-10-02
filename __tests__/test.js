@@ -13,7 +13,7 @@ const singleJokeFixture = {
   }
 };
 
-describe('api', function () {
+describe('api', () => {
   beforeEach(() => {
     chalk.yellow = jest.fn();
     chalk.magenta = jest.fn();
